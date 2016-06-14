@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testForAjax</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #diamond{
+            background: #000;
+            position: absolute;
+            height: 100px;
+            width: 100px;
+        }
+        .button1{
+            margin: 250px 0 0 300px;
+            position: absolute;
+        }
+        .button2{
+            margin: 280px 0 0 300px;
+            position: absolute;
+        }
+    </style>
+    <script style="txt/javascript">
+        //时间间隔
+        var time=10;
+        //速度
+        var speed=20;
+        //限制
+        var limitLeft=500;
+        var limitTop=500;
+        //循环函数替换元素
+        var i;
+        //开始循环函数
+        function startCircle() {
+            i=setInterval(function circle() {
+                var left=document.getElementById("diamond").style.left;
+                var top=document.getElementById("diamond").style.top;
+                var left1=parseInt(left);
+                var top1=parseInt(top);
+                if (left1 <= limitLeft && top1 === 0){
+                    document.getElementById("diamond").style.left =left1 + speed + "px";
+                }
+                else if (left1 > limitLeft && top1 <=limitTop){
+                    document.getElementById("diamond").style.top =top1 + speed + "px";
+                }
+                else if (left1 > 0 && top1 >limitTop){
+                    document.getElementById("diamond").style.left =left1 - speed + "px";
+                }
+                else if (left1 === 0){
+                    document.getElementById("diamond").style.top =top1 - speed + "px";
+                }
+            },time);
+        }
+        //停止循环函数
+        function stopCircle() {
+            clearInterval(i);
+        }
+    </script>
+
+</head>
+<body>
+<div id="diamond" style="left: 0;top: 0;"></div>
+<input class="button1" type="button" value="开始循环" onclick="startCircle()" />
+<input class="button2" type="button" value="结束循环" onclick="stopCircle()"/>
+</body>
+</html>
